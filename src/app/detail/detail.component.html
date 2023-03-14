@@ -1,0 +1,117 @@
+<h1>
+  Übersicht zur {{activeLeague.ligaName}}<small>
+    - Saison {{activeLeague.saison}}</small
+  >
+</h1>
+
+<p>{{matches.length}}</p>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active">Spieltage</a>
+  </li>
+  <li class="nav-item" *ngFor="let spieltag of matches">
+    <a class="nav-link auswaehlen" (click)="tagAuswaehlen(spieltag)"
+      >{{spieltag.group.groupOrderID}}</a
+    >
+  </li>
+</ul>
+
+<br />
+
+<div class="col-12" *ngIf="ausgewaehltesMatch">
+  <div class="card">
+    <div class="card-header">
+      <!-- Team Namen -->
+      <div class="row">
+        <div class="col-4">
+          <h4 class="text-center">{{ ausgewaehltesMatch.team1.teamName }}</h4>
+        </div>
+        <div class="col-4">
+          <h4 class="text-center">VS</h4>
+        </div>
+        <div class="col-4">
+          <h4 class="text-center">{{ ausgewaehltesMatch.team2.teamName }}</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <!-- Team Logos und Spielstand -->
+      <div class="row">
+        <div class="d-flex justify-content-around">
+          <div class="col-4 align-content-end">
+            <img
+              [src]="ausgewaehltesMatch.team1.teamIconUrl"
+              class="w-25 mx-auto d-block teamlogo"
+              alt="Logo von {{ ausgewaehltesMatch.team1.teamName }}"
+            />
+          </div>
+          <div class="col-4 align-self-center">
+            <h3 class="my-auto">
+              <span
+                >{{ ausgewaehltesMatch.matchResults[0]?.pointsteam1 }} : {{
+                ausgewaehltesMatch.matchResults[0]?.pointsteam2 }}</span
+              >
+            </h3>
+            <h5 class="halbzeit">
+              <small
+                >({{ ausgewaehltesMatch.matchResults[1]?.pointsteam1 }} : {{
+                ausgewaehltesMatch.matchResults[1]?.pointsteam2 }})</small
+              >
+            </h5>
+          </div>
+          <div class="col-4 align-content-start">
+            <img
+              [src]="ausgewaehltesMatch.team2.teamIconUrl"
+              class="w-25 mx-auto d-block teamlogo"
+              alt="Logo von {{ ausgewaehltesMatch.team2.teamName }}"
+            />
+          </div>
+        </div>
+      </div>
+
+      <hr />
+
+      <h5 class="text-center">Tore</h5>
+      <div class="row">
+        <div class="col-6">
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let tor of toreVonTeam(1)"
+            >
+              {{tor.goalGetterName}}
+              <span class="badge badge-primary badge-pill"
+                >'{{tor.matchMinute}}</span
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="col-6">
+          <ul class="list-group">
+            <li
+              class="list-group-item d-flex justify-content-between align-items-center"
+              *ngFor="let tor of toreVonTeam(2)"
+            >
+              {{tor.goalGetterName}}
+              <span class="badge badge-primary badge-pill"
+                >'{{tor.matchMinute}}</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <hr />
+
+      <h5>Über das Spiel</h5>
+      <p>
+        Stadion: {{ausgewaehltesMatch.location.locationStadium}},
+        {{ausgewaehltesMatch.location.locationCity}}
+      </p>
+      <p>Anpiff: {{ausgewaehltesMatch.matchDateTime | date:'medium' }}</p>
+    </div>
+  </div>
+</div>

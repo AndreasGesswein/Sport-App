@@ -1,0 +1,31 @@
+<h3 class="display-4">Registrieren</h3>
+
+<input
+  class="form-control"
+  type="text"
+  [(ngModel)]="newAcc.benutzer"
+  placeholder="Benutzer"
+/><br />
+<input
+  class="form-control"
+  type="text"
+  [(ngModel)]="newAcc.password"
+  placeholder="password"
+/><br />
+<input
+  class="form-control"
+  type="text"
+  [(ngModel)]="newAcc.passwordBestaetigung"
+  placeholder="password wiederholen"
+/><br />
+
+<span (click)="save()">
+  <div *ngIf="ausgefuellt == false" class="alert alert-danger" role="alert">
+  Bitte alle Felder überprüfen!
+</div>
+<button class="btn btn-primary btn-block">
+  <span class="material-icons">
+    save
+  </span>
+</button>
+</span>

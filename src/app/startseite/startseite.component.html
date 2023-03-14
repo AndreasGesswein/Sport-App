@@ -1,0 +1,33 @@
+<tr *ngIf="!loggedIn">
+  <h4 class="display-4">Login</h4>
+  <input
+  class="form-control"
+  type="text"
+  [(ngModel)]="loginAcc.benutzer"
+  placeholder="Benutzername"
+/><br />
+  <input
+  class="form-control"
+  type="text"
+  [(ngModel)]="loginAcc.password"
+  placeholder="Passwort"
+/><br />
+
+  <span (click)="login()">
+    <div *ngIf="!ausgefuellt" class="alert alert-danger" role="alert">
+      Bitte überprüfen sie ihre Angaben nochmal!
+    </div>
+  <button class="btn btn-primary btn-block">
+  <span class="material-icons">
+    login
+  </span> Login
+  </button>
+  </span>
+  <p class="container text-center">
+  <a [routerLink]="['/registrieren']">Noch nicht Registriert?</a>
+</p>
+</tr>
+
+<!-- <tr *ngIf="loggedIn">
+<app-profil></app-profil>
+</tr> -->

@@ -1,0 +1,35 @@
+<thead>
+  <tr>
+    <h3 class="display-4">Profil </h3>
+  </tr>
+<td>
+  <img src="https://th.bing.com/th/id/OIP.Hg6WWD-EJKox84ozEaqxaAHaJd?pid=ImgDet&rs=1"/>
+</td>
+  <td> Notiz:
+    <input id ="textx" type="text" >
+  </td>
+</thead>
+<table class="table">
+  <thead class="thead-dark">
+    <th>Ihre Favoriten</th>
+  </thead>
+  <thead class="thead-dark">
+    <th>ID</th>
+    <th>Liga Name</th>
+    <th>Shortcut</th>
+    <th>Saison</th>
+    <th>Favorit entfernen</th>
+  </thead>
+
+  <tr *ngFor="let f of favoriten">
+    <td class="auswaehlen" (click)="openLeagueDetail(f)">{{f.id}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(f)">{{f.ligaName}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(f)">{{f.shortcut}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(f)">{{f.saison}}</td>
+    <td *ngIf="f.favorit == true">
+      <span id="favoritJa" (click)="favoritenEntfernen(f)" class="material-icons">
+        favorite
+      </span>
+    </td>
+  </tr>
+</table>

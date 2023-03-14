@@ -1,0 +1,39 @@
+<h1>Übersicht</h1>
+
+<p>Hier findest du eine Übersicht von mir Empfohlener Ligen aus verschiedenen Sportarten</p>
+<p>Wenn du dich mit deinem Account einloggst kannst du mit dem Likebutton auch eine eigene Liste von dir Favorisierten
+  liegen zusammenstellen.</p>
+
+<p>Klicke z.b auf "1.Fußballbundesliga" um die Spielstände aller spiele anzuschauen</p>
+
+<table class="table table-responsive">
+  <thead class="thead-dark">
+    <th>ID</th>
+    <th>Liga Name</th>
+    <th>Shortcut</th>
+    <th>Saison</th>
+    <th>Favoriten hinzufügen</th>
+
+  </thead>
+  <tr *ngFor="let s of sportapp">
+    <td class="auswaehlen" (click)="openLeagueDetail(s)">{{s.id}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(s)">{{s.ligaName}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(s)">{{s.shortcut}}</td>
+    <td class="auswaehlen" (click)="openLeagueDetail(s)">{{s.saison}}</td>
+    <td *ngIf="s.favorit == false">
+      <span
+        id="favoritNein"
+        (click)="favoritenZuProfilHinzufuegen(s)"
+        class="material-icons"
+      >
+        favorite
+      </span>
+    </td>
+    <td *ngIf="s.favorit == true">
+      <span id="favoritJa" (click)="favoritenZuProfilHinzufuegen(s)" class="material-icons">
+        favorite
+      </span>
+    </td>
+
+  </tr>
+</table>
